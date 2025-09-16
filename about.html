@@ -1,0 +1,666 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>من نحن - موبايل ستور</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            padding-top: 56px;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: var(--secondary-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .page-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://via.placeholder.com/1920x300');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 60px 0;
+            margin-bottom: 30px;
+        }
+
+        .about-section {
+            padding: 60px 0;
+        }
+
+        .mission-vision {
+            background-color: #f8f9fa;
+            padding: 60px 0;
+        }
+
+        .values-section {
+            padding: 60px 0;
+        }
+
+        .team-section {
+            background-color: #f8f9fa;
+            padding: 60px 0;
+        }
+
+        .team-member {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .team-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+            border: 5px solid white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            transition: transform 0.3s;
+        }
+
+            .stat-box:hover {
+                transform: translateY(-5px);
+            }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+            transition: transform 0.3s;
+            height: 100%;
+        }
+
+            .value-card:hover {
+                transform: translateY(-5px);
+            }
+
+        .value-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+            .timeline::before {
+                content: '';
+                position: absolute;
+                left: 50%;
+                width: 4px;
+                height: 100%;
+                background-color: var(--primary-color);
+                transform: translateX(-50%);
+            }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            width: 50%;
+            padding: 0 40px;
+            box-sizing: border-box;
+        }
+
+            .timeline-item:nth-child(odd) {
+                left: 0;
+                text-align: left;
+            }
+
+            .timeline-item:nth-child(even) {
+                left: 50%;
+                text-align: right;
+            }
+
+        .timeline-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+            .timeline-content::after {
+                content: '';
+                position: absolute;
+                top: 20px;
+                width: 20px;
+                height: 20px;
+                background-color: white;
+                transform: rotate(45deg);
+            }
+
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::after {
+            left: -10px;
+        }
+
+        .timeline-date {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            position: relative;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            text-align: center;
+        }
+
+            .section-title::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 80px;
+                height: 3px;
+                background-color: var(--primary-color);
+            }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 0;
+            }
+
+                .timeline-item:nth-child(even) {
+                    left: 0;
+                }
+
+                    .timeline-item:nth-child(odd) .timeline-content::after,
+                    .timeline-item:nth-child(even) .timeline-content::after {
+                        left: -10px;
+                        right: auto;
+                    }
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 9999;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fa-solid fa-mobile-screen"></i> موبايل ستور
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">الرئيسية</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">المنتجات</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="about.html">من نحن</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">اتصل بنا</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="offers.html">العروض</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <a href="#" class="btn btn-outline-light me-2" data-bs-toggle="modal" data-bs-target="#loginModal">
+                        <i class="fa-solid fa-user"></i> تسجيل الدخول
+                    </a>
+                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">
+                        <i class="fa-solid fa-user-plus"></i> إنشاء حساب
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container text-center">
+            <h1 class="display-4 fw-bold">من نحن</h1>
+            <p class="lead">تعرف على قصة تأسيسنا وقيمنا ورسالتنا</p>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="section-title">قصة تأسيسنا</h2>
+                    <p class="lead">منذ تأسيسنا في عام 2010، كنا نهدف إلى توفير أحدث الهواتف الذكية بأفضل الأسعار وخدمة العملاء المتميزة.</p>
+                    <p>بدأت رحلتنا بمتجر صغير في صنعاء، ومع ثقة عملائنا الكرام، توسعنا لنصبح من أكبر متاجر الجوالات في الجمهورية اليمنية، مع فروع في 5 مدن رئيسية وخدمة توصيل لجميع أنحاء الجمهورية اليمنية.</p>
+                    <p>نفتخر باختيارنا لأفضل العلامات التجارية وضماننا لجودة جميع منتجاتنا، مع تقديم ضمان يصل إلى 3 سنوات على بعض المنتجات.</p>
+                </div>
+                <div class="col-lg-6">
+                    <img src="images/about-story.jpg.jpg" class="img-fluid rounded shadow" alt="متجرنا">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="mission-vision">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 col-6">
+                    <div class="stat-box">
+                        <div class="stat-number" data-count="13">0</div>
+                        <div class="stat-title">سنوات من الخبرة</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-box">
+                        <div class="stat-number" data-count="50000">0</div>
+                        <div class="stat-title">عميل راضي</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-box">
+                        <div class="stat-number" data-count="15">0</div>
+                        <div class="stat-title">فرع حول المملكة</div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-6">
+                    <div class="stat-box">
+                        <div class="stat-number" data-count="1000">0</div>
+                        <div class="stat-title">منتج متوفر</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision -->
+    <section class="mission-vision">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <div class="card h-100 border-0 shadow">
+                        <div class="card-body text-center p-5">
+                            <i class="fas fa-bullseye fa-3x text-primary mb-4"></i>
+                            <h3 class="card-title mb-3">رسالتنا</h3>
+                            <p class="card-text">توفير أحدث التقنيات移动ية بأفضل الأسعار مع خدمة عملاء متميزة، وضمان رضا العملاء من خلال تقديم منتجات أصلية وضمان حقيقي يضمن حقوقهم.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="card h-100 border-0 shadow">
+                        <div class="card-body text-center p-5">
+                            <i class="fas fa-eye fa-3x text-primary mb-4"></i>
+                            <h3 class="card-title mb-3">رؤيتنا</h3>
+                            <p class="card-text">أن نكون المتجر الرائد في بيع الجوالات وتقنيات移动ية في الشرق الأوسط، من خلال التميز في خدمة العملاء وتقديم أحدث المنتجات بأفضل الأسعار.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <div class="container">
+            <h2 class="section-title">قيمنا</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h4>الشفافية</h4>
+                        <p>نعتبر الشفافية أساس ثقة العملاء، لذلك نقدم معلومات واضحة وصادقة عن جميع منتجاتنا.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-star"></i>
+                        </div>
+                        <h4>الجودة</h4>
+                        <p>نحرص على تقديم منتجات عالية الجودة من أشهر العلامات التجارية العالمية.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h4>خدمة العملاء</h4>
+                        <p>فريق خدمة العملاء لدينا متاح على مدار الساعة للرد على استفساراتكم ومساعدتكم.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-truck"></i>
+                        </div>
+                        <h4>سرعة التوصيل</h4>
+                        <p>نوفر خدمة توصيل سريعة لجميع أنحاء المملكة خلال 24-48 ساعة.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4>الضمان</h4>
+                        <p>جميع منتجاتنا أصلية ومضمونة، مع تقديم ضمان يصل إلى 3 سنوات على بعض الأجهزة.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-hand-holding-usd"></i>
+                        </div>
+                        <h4>أسعار مناسبة</h4>
+                        <p>نوفر لعملائنا أفضل الأسعار مع عروض وتخفيضات مستمرة طوال العام.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="team-section">
+        <div class="container">
+            <h2 class="section-title">فريقنا</h2>
+            <div class="row">
+                <div class="col-md-3 col-sm-6">
+                    <div class="team-member">
+                        <img src="images/Team/Team-01.jpg" alt="مدير الشركة" class="team-img">
+                        <h4>محمد أحمد</h4>
+                        <p>المدير التنفيذي</p>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="team-member">
+                        <img src="images/Team/Team-02.jpg" alt="مدير المبيعات" class="team-img">
+                        <h4>سارة عبدالله</h4>
+                        <p>مديرة المبيعات</p>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="team-member">
+                        <img src="images/Team/‏‏Team-03.jpg" alt="مدير التسويق" class="team-img">
+                        <h4>خالد سالم</h4>
+                        <p>مدير التسويق</p>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6">
+                    <div class="team-member">
+                        <img src="images/Team/Team-02.jpg" alt="مدير خدمة العملاء" class="team-img">
+                        <h4>لينا فهد</h4>
+                        <p>مديرة خدمة العملاء</p>
+                        <div class="social-icons">
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                            <a href="#"><i class="fab fa-instagram"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>موبايل ستور</h5>
+                    <p>متجر متخصص في بيع أحدث الهواتف الذكية وملحقاتها بأفضل الأسعار وضمان الجودة.</p>
+                    <div class="mt-3">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5>روابط سريعة</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-white">الرئيسية</a></li>
+                        <li><a href="products.html" class="text-white">المنتجات</a></li>
+                        <li><a href="about.html" class="text-white">من نحن</a></li>
+                        <li><a href="contact.html" class="text-white">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5>وسائل الدفع</h5>
+                    <div>
+                        <i class="fa-brands fa-cc-visa fa-2x me-2"></i>
+                        <i class="fa-brands fa-cc-mastercard fa-2x me-2"></i>
+                        <i class="fa-brands fa-cc-paypal fa-2x me-2"></i>
+                        <i class="fa-solid fa-money-bill-wave fa-2x me-2"></i>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5>اشترك في النشرة البريدية</h5>
+                    <form>
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="بريدك الإلكتروني">
+                            <button class="btn btn-primary" type="button">اشترك</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr class="mt-0">
+            <div class="text-center py-3">
+                <p class="mb-0">© 2023 موبايل ستور. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">تسجيل الدخول</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm" novalidate>
+                        <div class="mb-3">
+                            <label for="loginEmail" class="form-label">البريد الإلكتروني</label>
+                            <input type="email" class="form-control" id="loginEmail" required>
+                            <div class="invalid-feedback">يرجى إدخال بريد إلكتروني صحيح</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="loginPassword" class="form-label">كلمة المرور</label>
+                            <input type="password" class="form-control" id="loginPassword" required>
+                            <div class="invalid-feedback">يرجى إدخال كلمة المرور</div>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">تذكرني</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">تسجيل الدخول</button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <a href="#" class="text-decoration-none">نسيت كلمة المرور؟</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">إنشاء حساب جديد</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="registerForm" novalidate>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="firstName" class="form-label">الاسم الأول</label>
+                                <input type="text" class="form-control" id="firstName" required>
+                                <div class="invalid-feedback">يرجى إدخال الاسم الأول</div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="lastName" class="form-label">الاسم الأخير</label>
+                                <input type="text" class="form-control" id="lastName" required>
+                                <div class="invalid-feedback">يرجى إدخال الاسم الأخير</div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerEmail" class="form-label">البريد الإلكتروني</label>
+                            <input type="email" class="form-control" id="registerEmail" required>
+                            <div class="invalid-feedback">يرجى إدخال بريد إلكتروني صحيح</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerPassword" class="form-label">كلمة المرور</label>
+                            <input type="password" class="form-control" id="registerPassword" required minlength="6">
+                            <div class="invalid-feedback">كلمة المرور يجب أن تكون 6 أحرف على الأقل</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmPassword" class="form-label">تأكيد كلمة المرور</label>
+                            <input type="password" class="form-control" id="confirmPassword" required>
+                            <div class="invalid-feedback">كلمة المرور غير متطابقة</div>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="agreeTerms" required>
+                            <label class="form-check-label" for="agreeTerms">أوافق على الشروط والأحكام</label>
+                            <div class="invalid-feedback">يجب الموافقة على الشروط والأحكام</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">إنشاء حساب</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true" data-bs-delay="3000">
+        <div class="toast-header">
+            <strong class="me-auto">موبايل ستور</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+        </div>
+        <div class="toast-body">
+            مرحباً بك في صفحة "من نحن"!
+        </div>
+    </div>
+
+    <!-- Bootstrap & jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Show toast notification on page load
+        $(document).ready(function () {
+            $('.toast').toast('show');
+
+            // Form validation
+            $('#loginForm').on('submit', function (e) {
+                if (!this.checkValidity()) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+                this.classList.add('was-validated');
+            });
+
+            $('#registerForm').on('submit', function (e) {
+                if (!this.checkValidity()) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                } else {
+                    // Check if passwords match
+                    var password = $('#registerPassword').val();
+                    var confirmPassword = $('#confirmPassword').val();
+
+                    if (password !== confirmPassword) {
+                        e.preventDefault();
+                        $('#confirmPassword').addClass('is-invalid');
+                    } else {
+                        $('#confirmPassword').removeClass('is-invalid');
+                    }
+                }
+                this.classList.add('was-validated');
+            });
+
+            // Animate stats counter
+            $('.stat-number').each(function () {
+                $(this).prop('Counter', 0).animate({
+                    Counter: $(this).text()
+                }, {
+                    duration: 2000,
+                    easing: 'swing',
+                    step: function (now) {
+                        $(this).text(Math.ceil(now));
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

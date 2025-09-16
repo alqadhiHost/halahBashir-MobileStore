@@ -1,0 +1,475 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خدماتنا - موقعي الإلكتروني</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- ملف CSS الموحد -->
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* أنماط إضافية للصفحة */
+        .services-hero {
+            background: linear-gradient(rgba(78, 115, 223, 0.8), rgba(78, 115, 223, 0.8)), url('https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .service-card {
+            border: none;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            height: 100%;
+        }
+
+            .service-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            }
+
+        .service-icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+
+        .pricing-section {
+            background-color: #f8f9fc;
+            padding: 60px 0;
+        }
+
+        .pricing-card {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s;
+            text-align: center;
+            height: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+            .pricing-card.popular {
+                border: 2px solid var(--primary-color);
+                transform: scale(1.05);
+            }
+
+                .pricing-card.popular::before {
+                    content: 'الأكثر شيوعاً';
+                    position: absolute;
+                    top: 15px;
+                    left: -30px;
+                    background: var(--primary-color);
+                    color: white;
+                    padding: 5px 30px;
+                    transform: rotate(-45deg);
+                    font-size: 12px;
+                    width: 150px;
+                }
+
+        .price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin: 20px 0;
+        }
+
+        .price-period {
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        .process-steps {
+            padding: 60px 0;
+        }
+
+        .step-card {
+            text-align: center;
+            padding: 30px 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            height: 100%;
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+
+        .faq-section {
+            background-color: #f8f9fc;
+            padding: 60px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.html">موقعي</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">الرئيسية</a></li>
+                        <li class="nav-item"><a class="nav-link" href="about.html">من نحن</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="services.html">خدماتنا</a></li>
+                        <li class="nav-item"><a class="nav-link" href="gallery.html">معرض الأعمال</a></li>
+                        <li class="nav-item"><a class="nav-link" href="contact.html">اتصل بنا</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#" id="loginBtn">تسجيل الدخول</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Services Hero Section -->
+    <section class="services-hero">
+        <div class="container">
+            <h1 class="display-4">خدماتنا</h1>
+            <p class="lead">نقدم مجموعة متكاملة من خدمات تصميم وتطوير الويب لتلبية جميع احتياجاتك الرقمية</p>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="container py-5">
+        <div class="row">
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="service-card card">
+                    <div class="card-body text-center p-4">
+                        <div class="service-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h3 class="card-title">تصميم مواقع الويب</h3>
+                        <p class="card-text">نصمم مواقع ويب جذابة وسهلة الاستخدام تعكس هوية علامتك التجارية وتلبي توقعات عملائك.</p>
+                        <ul class="list-unstyled text-start mt-3">
+                            <li><i class="fas fa-check text-success me-2"></i> تصميم متجاوب</li>
+                            <li><i class="fas fa-check text-success me-2"></i> واجهة مستخدم intuitive</li>
+                            <li><i class="fas fa-check text-success me-2"></i> تحسين تجربة المستخدم</li>
+                            <li><i class="fas fa-check text-success me-2"></i> تحسين محركات البحث</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="service-card card">
+                    <div class="card-body text-center p-4">
+                        <div class="service-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3 class="card-title">تطبيقات الجوال</h3>
+                        <p class="card-text">نطور تطبيقات جوال مبتكرة لأنظمة iOS وAndroid تلبي احتياجات عملك وتواكب التطور التكنولوجي.</p>
+                        <ul class="list-unstyled text-start mt-3">
+                            <li><i class="fas fa-check text-success me-2"></i> تطبيقات أصلية</li>
+                            <li><i class="fas fa-check text-success me-2"></i> تطبيقات هجينة</li>
+                            <li><i class="fas fa-check text-success me-2"></i> واجهات بديهية</li>
+                            <li><i class="fas fa-check text-success me-2"></i> تكامل مع الخدمات</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="service-card card">
+                    <div class="card-body text-center p-4">
+                        <div class="service-icon">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h3 class="card-title">متاجر إلكترونية</h3>
+                        <p class="card-text">نبني متاجر إلكترونية متكاملة تساعدك على بيع منتجاتك وخدماتك عبر الإنترنت بكل سهولة وأمان.</p>
+                        <ul class="list-unstyled text-start mt-3">
+                            <li><i class="fas fa-check text-success me-2"></i> تصميم متجاوب</li>
+                            <li><i class="fas fa-check text-success me-2"></i> بوابات دفع آمنة</li>
+                            <li><i class="fas fa-check text-success me-2"></i> إدارة المخزون</li>
+                            <li><i class="fas fa-check text-success me-2"></i> تحليلات المبيعات</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="service-card card">
+                    <div class="card-body text-center p-4">
+                        <div class="service-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h3 class="card-title">التسويق الرقمي</h3>
+                        <p class="card-text">نقدم استراتيجيات تسويق رقمي فعالة لزيادة ظهورك على الإنترنت وجذب المزيد من العملاء المحتملين.</p>
+                        <ul class="list-unstyled text-start mt-3">
+                            <li><i class="fas fa-check text-success me-2"></i> تحسين محركات البحث</li>
+                            <li><i class="fas fa-check text-success me-2"></i> إعلانات وسائل التواصل</li>
+                            <li><i class="fas fa-check text-success me-2"></i> إدارة المحتوى</li>
+                            <li><i class="fas fa-check text-success me-2"></i> تحليل الأداء</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="service-card card">
+                    <div class="card-body text-center p-4">
+                        <div class="service-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <h3 class="card-title">استضافة وصيانة</h3>
+                        <p class="card-text">نوفر حلول استضافة موثوقة وخدمات صيانة مستمرة لضمان استقرار وأمان مواقعك وتطبيقاتك.</p>
+                        <ul class="list-unstyled text-start mt-3">
+                            <li><i class="fas fa-check text-success me-2"></i> استضافة مشتركة</li>
+                            <li><i class="fas fa-check text-success me-2"></i> استضافة VPS</li>
+                            <li><i class="fas fa-check text-success me-2"></i> صيانة دورية</li>
+                            <li><i class="fas fa-check text-success me-2"></i> نسخ احتياطي</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 mb-4">
+                <div class="service-card card">
+                    <div class="card-body text-center p-4">
+                        <div class="service-icon">
+                            <i class="fas fa-pencil-alt"></i>
+                        </div>
+                        <h3 class="card-title">تصميم الشعارات</h3>
+                        <p class="card-text">نصمم شعارات مبتكرة تعبر عن هوية علامتك التجارية وتترك انطباعًا قويًا لدى عملائك.</p>
+                        <ul class="list-unstyled text-start mt-3">
+                            <li><i class="fas fa-check text-success me-2"></i> تصميم هوية بصرية</li>
+                            <li><i class="fas fa-check text-success me-2"></i> دليل الاستخدام</li>
+                            <li><i class="fas fa-check text-success me-2"></i> تصميم مواد ترويجية</li>
+                            <li><i class="fas fa-check text-success me-2"></i> عدة العلامة التجارية</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section">
+        <div class="container">
+            <h2 class="text-center mb-5">باقات الأسعار</h2>
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="pricing-card">
+                        <h3>الباقة الأساسية</h3>
+                        <div class="price">1,000 <span class="price-period">ر.ي /شهرياً</span></div>
+                        <ul class="list-unstyled mb-4">
+                            <li><i class="fas fa-check text-success me-2"></i> 5 صفحات ويب</li>
+                            <li><i class="fas fa-check text-success me-2"></i> تصميم متجاوب</li>
+                            <li><i class="fas fa-check text-success me-2"></i> استضافة مجانية سنة</li>
+                            <li><i class="fas fa-times text-danger me-2"></i> متجر إلكتروني</li>
+                            <li><i class="fas fa-times text-danger me-2"></i> دعم فني 24/7</li>
+                        </ul>
+                        <button class="btn btn-outline-primary w-100">اختيار الباقة</button>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="pricing-card popular">
+                        <h3>الباقة المتوسطة</h3>
+                        <div class="price">2,000 <span class="price-period">ر.ي/شهرياً</span></div>
+                        <ul class="list-unstyled mb-4">
+                            <li><i class="fas fa-check text-success me-2"></i> 10 صفحات ويب</li>
+                            <li><i class="fas fa-check text-success me-2"></i> تصميم متجاوب</li>
+                            <li><i class="fas fa-check text-success me-2"></i> استضافة مجانية سنة</li>
+                            <li><i class="fas fa-check text-success me-2"></i> متجر إلكتروني أساسي</li>
+                            <li><i class="fas fa-check text-success me-2"></i> دعم فني 12/7</li>
+                        </ul>
+                        <button class="btn btn-primary w-100">اختيار الباقة</button>
+                    </div>
+                </div>
+                <div class="col-lg-4 mb-4">
+                    <div class="pricing-card">
+                        <h3>الباقة المتقدمة</h3>
+                        <div class="price">3,500 <span class="price-period">ر.ي/شهرياً</span></div>
+                        <ul class="list-unstyled mb-4">
+                            <li><i class="fas fa-check text-success me-2"></i> صفحات غير محدودة</li>
+                            <li><i class="fas fa-check text-success me-2"></i> تصميم متجاوب</li>
+                            <li><i class="fas fa-check text-success me-2"></i> استضافة مجانية سنة</li>
+                            <li><i class="fas fa-check text-success me-2"></i> متجر إلكتروني متكامل</li>
+                            <li><i class="fas fa-check text-success me-2"></i> دعم فني 24/7</li>
+                        </ul>
+                        <button class="btn btn-outline-primary w-100">اختيار الباقة</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Steps -->
+    <section class="process-steps">
+        <div class="container">
+            <h2 class="text-center mb-5">كيفية العمل معنا</h2>
+            <div class="row">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="step-card">
+                        <div class="step-number">1</div>
+                        <h4>الاتصال والتشاور</h4>
+                        <p>نتحدث معك لفهم متطلباتك وأهدافك لتقديم الحل الأمثل لاحتياجاتك.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="step-card">
+                        <div class="step-number">2</div>
+                        <h4>التخطيط والتصميم</h4>
+                        <p>نصمم نموذجًا أولياً للمشروع ونعد خطة عمل مفصلة لتنفيذه.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="step-card">
+                        <div class="step-number">3</div>
+                        <h4>التنفيذ والتطوير</h4>
+                        <p>ننفذ المشروع وفقًا لأعلى معايير الجودة وأحدث التقنيات.</p>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="step-card">
+                        <div class="step-number">4</div>
+                        <h4>التسليم والدعم</h4>
+                        <p>نسلم المشروع مع提供 الدعم والاستشارات اللازمة بعد التسليم.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <h2 class="text-center mb-5">أسئلة شائعة حول الخدمات</h2>
+            <div class="accordion" id="servicesFaq">
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faq1">
+                            كم من الوقت يستغرق تصميم موقع ويب؟
+                        </button>
+                    </h2>
+                    <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#servicesFaq">
+                        <div class="accordion-body">
+                            مدة تصميم موقع الويب تعتمد على تعقيد المشروع والميزات المطلوبة. بشكل عام، يستغرق موقع أساسي من 2-3 أسابيع، بينما المواقع الأكثر تعقيدًا قد تستغرق من 4-8 أسابيع.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq2">
+                            هل تقدمون خدمات الصيانة بعد التسليم؟
+                        </button>
+                    </h2>
+                    <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#servicesFaq">
+                        <div class="accordion-body">
+                            نعم، نقدم باقات صيانة شاملة تشمل التحديثات الدورية، النسخ الاحتياطي، مراقبة الأداء، والدعم الفني لحل أي مشاكل قد تظهر.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq3">
+                            هل يمكنني تعديل المحتوى بنفسي بعد التسليم؟
+                        </button>
+                    </h2>
+                    <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#servicesFaq">
+                        <div class="accordion-body">
+                            نعم، نستخدم أنظمة إدارة محتوى تمكنك من تعديل المحتوى بنفسك بسهولة. كما نقدم لكم جلسات تدريبية لتعليمكم كيفية إدارة المحتوى.
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <h2 class="accordion-header">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq4">
+                            ما هي ضماناتكم على العمل المقدم؟
+                        </button>
+                    </h2>
+                    <div id="faq4" class="accordion-collapse collapse" data-bs-parent="#servicesFaq">
+                        <div class="accordion-body">
+                            نقدم ضمانًا لمدة 6 أشهر على جميع أعمالنا يشمل إصلاح أي أخطاء برمجية قد تظهر خلال هذه الفترة. كما نضمن أن يعمل الموقع بشكل صحيح على جميع المتصفحات الحديثة.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-5 bg-primary text-white">
+        <div class="container text-center">
+            <h2 class="mb-4">مستعد لبدء مشروعك؟</h2>
+            <p class="lead mb-4">اتصل بنا اليوم واحصل على استشارة مجانية لمشروعك</p>
+            <a href="contact.html" class="btn btn-light btn-lg">اتصل بنا الآن</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h4>عن الموقع</h4>
+                    <p>هذا موقع تجريبي تم إنشاؤه لمشروع مقرر تصميم الويب</p>
+                </div>
+                <div class="col-md-4">
+                    <h4>روابط سريعة</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-white">الرئيسية</a></li>
+                        <li><a href="about.html" class="text-white">من نحن</a></li>
+                        <li><a href="services.html" class="text-white">خدماتنا</a></li>
+                        <li><a href="contact.html" class="text-white">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4>وسائل التواصل</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="bg-light">
+            <p class="text-center mb-0">© 2025 جميع الحقوق محفوظة | من إعداد الطالبة/ هالة بشير القاضي</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        // تفعيل نمط Bootstrap للعناصر
+        $(document).ready(function() {
+            // فتح نافذة تسجيل الدخول
+            $('#loginBtn').click(function(e) {
+                e.preventDefault();
+                // هنا يمكنك إضافة AJAX لتحميل نموذج التسجيل
+                alert("سيتم تحميل نموذج تسجيل الدخول عبر Ajax");
+            });
+
+            // تأثيرات للبطاقات عند التمرير
+            $(window).scroll(function() {
+                $('.service-card').each(function() {
+                    var position = $(this).offset().top;
+                    var scrollPosition = $(window).scrollTop() + $(window).height();
+
+                    if (position < scrollPosition) {
+                        $(this).addClass('animate__fadeInUp');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

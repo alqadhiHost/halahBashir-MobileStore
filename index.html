@@ -1,0 +1,585 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>موبايل ستور - متجر الجوالات الأول</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            padding-top: 56px;
+            background-color: #f8f9fa;
+        }
+
+        .navbar {
+            background-color: var(--secondary-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Slider Styles */
+        .main-slider {
+            margin-bottom: 30px;
+        }
+
+        .carousel-item {
+            height: 500px;
+            position: relative;
+        }
+
+            .carousel-item img {
+                object-fit: cover;
+                height: 100%;
+                width: 100%;
+            }
+
+        .carousel-caption {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 10px;
+            bottom: 50px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 80%;
+            max-width: 800px;
+        }
+
+            .carousel-caption h2 {
+                font-size: 2.5rem;
+                font-weight: bold;
+                margin-bottom: 15px;
+                color: #fff;
+            }
+
+            .carousel-caption p {
+                font-size: 1.2rem;
+                margin-bottom: 20px;
+            }
+
+        .carousel-control-prev, .carousel-control-next {
+            width: 5%;
+        }
+
+        .carousel-indicators button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin: 0 5px;
+        }
+
+        .product-card {
+            transition: transform 0.3s;
+            margin-bottom: 20px;
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+            .product-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            }
+
+        .product-img {
+            height: 200px;
+            object-fit: contain;
+            padding: 15px;
+        }
+
+        .discount-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .brands-section {
+            background-color: white;
+            padding: 30px 0;
+            margin: 30px 0;
+        }
+
+        .brand-logo {
+            height: 60px;
+            filter: grayscale(100%);
+            transition: filter 0.3s;
+        }
+
+            .brand-logo:hover {
+                filter: grayscale(0%);
+            }
+
+        footer {
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 40px 0 20px;
+        }
+
+        .social-icon {
+            font-size: 24px;
+            margin: 0 10px;
+            color: white;
+            transition: color 0.3s;
+        }
+
+            .social-icon:hover {
+                color: var(--primary-color);
+            }
+
+        .section-title {
+            position: relative;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            text-align: center;
+        }
+
+            .section-title::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 80px;
+                height: 3px;
+                background-color: var(--primary-color);
+            }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .carousel-item {
+                height: 300px;
+            }
+
+            .carousel-caption {
+                bottom: 20px;
+                padding: 10px;
+            }
+
+                .carousel-caption h2 {
+                    font-size: 1.5rem;
+                }
+
+                .carousel-caption p {
+                    font-size: 0.9rem;
+                }
+
+            .product-img {
+                height: 150px;
+            }
+        }
+
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 9999;
+        }
+
+        /* Modal styles */
+        .modal-header {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Form validation */
+        .invalid-feedback {
+            display: none;
+            color: #dc3545;
+        }
+
+        .was-validated .form-control:invalid ~ .invalid-feedback {
+            display: block;
+        }
+
+        /* Grid layout for products */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fa-solid fa-mobile-screen"></i> موبايل ستور
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">الرئيسية</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">المنتجات</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">من نحن</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">اتصل بنا</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="offers.html">العروض</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <a href="#" class="btn btn-outline-light me-2" data-bs-toggle="modal" data-bs-target="#loginModal">
+                        <i class="fa-solid fa-user"></i> تسجيل الدخول
+                    </a>
+                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">
+                        <i class="fa-solid fa-user-plus"></i> إنشاء حساب
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Slider -->
+    <div id="mainSlider" class="carousel slide main-slider" data-bs-ride="carousel">
+        <!-- Indicators -->
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#mainSlider" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#mainSlider" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#mainSlider" data-bs-slide-to="2"></button>
+            <button type="button" data-bs-target="#mainSlider" data-bs-slide-to="3"></button>
+        </div>
+
+        <!-- Slides -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://images.unsplash.com/photo-1610792516307-ea5acd9c3b00?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80" class="d-block w-100" alt="عروض خاصة على الهواتف">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2>عروض خاصة على أحدث الهواتف</h2>
+                    <p>احصل على خصم يصل إلى 25% على مجموعة مختارة من الهواتف الذكية</p>
+                    <a href="offers.html" class="btn btn-primary btn-lg">اطلع على العروض</a>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1780&q=80" class="d-block w-100" alt="أحدث إصدارات iPhone">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2>أحدث إصدارات iPhone</h2>
+                    <p>اكتشف سلسلة iPhone 14 بمواصفاتها المذهلة وتصميمها الرائع</p>
+                    <a href="products.html?brand=apple" class="btn btn-primary btn-lg">تسوق الآن</a>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1771&q=80" class="d-block w-100" alt="هواتف Samsung الجديدة">
+                <div class="carousel-caption d-none d-md-block">
+                    <h2>هواتف Samsung الجديدة</h2>
+                    <p>احدث هواتف Samsung بمواصفات مذهلة وكاميرات احترافية</p>
+                    <a href="products.html?brand=samsung" class="btn btn-primary btn-lg">اكتشف المزيد</a>
+                </div>
+            </div>
+          
+        </div>
+
+        <!-- Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#mainSlider" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">السابق</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#mainSlider" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">التالي</span>
+        </button>
+    </div>
+
+    <!-- Featured Products -->
+    <section class="container my-5">
+        <h2 class="section-title">منتجات مميزة</h2>
+        <div class="products-grid">
+            <!-- Product 1 -->
+            <div class="card product-card">
+                <span class="discount-badge">15% خصم</span>
+                <img src="images/Products/iPhone 13.jpg" class="card-img-top product-img" alt="iPhone 13">
+                <div class="card-body">
+                    <h5 class="card-title">iPhone 13</h5>
+                    <p class="card-text">أحدث هاتف من Apple بشريحة A15 Bionic</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <span class="text-decoration-line-through text-muted me-2">3,499 ر.ي</span>
+                            <span class="fw-bold">2,999 ر.ي</span>
+                        </div>
+                        <button class="btn btn-sm btn-outline-primary">إضافة إلى السلة</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="card product-card">
+                <img src="images/Products/Samsung Galaxy S22.jpg" class="card-img-top product-img" alt="Samsung S22">
+                <div class="card-body">
+                    <h5 class="card-title">Samsung Galaxy S22</h5>
+                    <p class="card-text">هاتف أندرويد قوي بكاميرة رائعة</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="fw-bold">3,199 ر.ي</span>
+                        <button class="btn btn-sm btn-outline-primary">إضافة إلى السلة</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 3 -->
+            <div class="card product-card">
+                <span class="discount-badge">10% خصم</span>
+                <img src="images/Products/Xiaomi 12.jpg" class="card-img-top product-img" alt="Xiaomi 12">
+                <div class="card-body">
+                    <h5 class="card-title">Xiaomi 12</h5>
+                    <p class="card-text">هاتف ذكي بقدرات تصوير مذهلة</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <span class="text-decoration-line-through text-muted me-2">2,799 ر.ي</span>
+                            <span class="fw-bold">2,499 ر.ي</span>
+                        </div>
+                        <button class="btn btn-sm btn-outline-primary">إضافة إلى السلة</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Product 4 -->
+            <div class="card product-card">
+                <img src="images/Products/Google Pixel 6.jpg" class="card-img-top product-img" alt="Google Pixel 6">
+                <div class="card-body">
+                    <h5 class="card-title">Google Pixel 6</h5>
+                    <p class="card-text">هاتف Google الذكي بنظام كاميرا متطور</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="fw-bold">2,899 ر.ي</span>
+                        <button class="btn btn-sm btn-outline-primary">إضافة إلى السلة</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brands Section -->
+    <section class="brands-section">
+        <div class="container">
+            <h2 class="section-title">العلامات التجارية</h2>
+            <div class="row text-center">
+                <div class="col-6 col-md-2 mb-4">
+                    <img src="images/brands/0000502_apple_350.png" class="brand-logo" alt="Apple">
+                </div>
+                <div class="col-6 col-md-2 mb-4">
+                    <img src="images/brands/0000501_samsung_350.png" class="brand-logo" alt="Samsung">
+                </div>
+                <div class="col-6 col-md-2 mb-4">
+                    <img src="images/brands/0039472_honor_350.jpeg" class="brand-logo" alt="Honor">
+                </div>
+                <div class="col-6 col-md-2 mb-4">
+                    <img src="images/brands/0006495_huawei_350.jpeg" class="brand-logo" alt="Huawei">
+                </div>
+                <div class="col-6 col-md-2 mb-4">
+                    <img src="images/brands/0039471_oppo_350.jpeg" class="brand-logo" alt="Oppo">
+                </div>
+                <div class="col-6 col-md-2 mb-4">
+                    <img src="images/brands/0039472_honor_350.jpeg" class="brand-logo" alt="Honor">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>موبايل ستور </h5>
+                    <p>متجر متخصص في بيع أحدث الهواتف الذكية وملحقاتها بأفضل الأسعار وضمان الجودة مشروع تجريبي مقرر تصميم الويب من تصميم الطالبة / هالة بشير القاضي.</p>
+                    <div class="mt-3">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5>روابط سريعة</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-white">الرئيسية</a></li>
+                        <li><a href="products.html" class="text-white">المنتجات</a></li>
+                        <li><a href="about.html" class="text-white">من نحن</a></li>
+                        <li><a href="contact.html" class="text-white">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5>وسائل الدفع</h5>
+                    <div>
+                        <i class="fa-brands fa-cc-visa fa-2x me-2"></i>
+                        <i class="fa-brands fa-cc-mastercard fa-2x me-2"></i>
+                        <i class="fa-brands fa-cc-paypal fa-2x me-2"></i>
+                        <i class="fa-solid fa-money-bill-wave fa-2x me-2"></i>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5>اشترك في النشرة البريدية</h5>
+                    <form>
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="بريدك الإلكتروني">
+                            <button class="btn btn-primary" type="button">اشترك</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr class="mt-0">
+            <div class="text-center py-3">
+                <p class="mb-0">© 2023 موبايل ستور. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal fade" id="loginModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">تسجيل الدخول</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="loginForm" novalidate>
+                        <div class="mb-3">
+                            <label for="loginEmail" class="form-label">البريد الإلكتروني</label>
+                            <input type="email" class="form-control" id="loginEmail" required>
+                            <div class="invalid-feedback">يرجى إدخال بريد إلكتروني صحيح</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="loginPassword" class="form-label">كلمة المرور</label>
+                            <input type="password" class="form-control" id="loginPassword" required>
+                            <div class="invalid-feedback">يرجى إدخال كلمة المرور</div>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="rememberMe">
+                            <label class="form-check-label" for="rememberMe">تذكرني</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">تسجيل الدخول</button>
+                    </form>
+                    <div class="text-center mt-3">
+                        <a href="#" class="text-decoration-none">نسيت كلمة المرور؟</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal fade" id="registerModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">إنشاء حساب جديد</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="registerForm" novalidate>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="firstName" class="form-label">الاسم الأول</label>
+                                <input type="text" class="form-control" id="firstName" required>
+                                <div class="invalid-feedback">يرجى إدخال الاسم الأول</div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="lastName" class="form-label">الاسم الأخير</label>
+                                <input type="text" class="form-control" id="lastName" required>
+                                <div class="invalid-feedback">يرجى إدخال الاسم الأخير</div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerEmail" class="form-label">البريد الإلكتروني</label>
+                            <input type="email" class="form-control" id="registerEmail" required>
+                            <div class="invalid-feedback">يرجى إدخال بريد إلكتروني صحيح</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="registerPassword" class="form-label">كلمة المرور</label>
+                            <input type="password" class="form-control" id="registerPassword" required minlength="6">
+                            <div class="invalid-feedback">كلمة المرور يجب أن تكون 6 أحرف على الأقل</div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="confirmPassword" class="form-label">تأكيد كلمة المرور</label>
+                            <input type="password" class="form-control" id="confirmPassword" required>
+                            <div class="invalid-feedback">كلمة المرور غير متطابقة</div>
+                        </div>
+                        <div class="mb-3 form-check">
+                            <input type="checkbox" class="form-check-input" id="agreeTerms" required>
+                            <label class="form-check-label" for="agreeTerms">أوافق على الشروط والأحكام</label>
+                            <div class="invalid-feedback">يجب الموافقة على الشروط والأحكام</div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">إنشاء حساب</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-bs-autohide="true" data-bs-delay="3000">
+        <div class="toast-header">
+            <strong class="me-auto">موبايل ستور</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="toast"></button>
+        </div>
+        <div class="toast-body">
+              مرحباً بك في متجرنا! نتمنى لك تجربة تسوق ممتعة.
+        </div>
+    </div>
+
+    <!-- Bootstrap & jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Show toast notification on page load
+        $(document).ready(function () {
+            $('.toast').toast('show');
+
+            // Form validation
+            $('#loginForm').on('submit', function (e) {
+                if (!this.checkValidity()) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+                this.classList.add('was-validated');
+            });
+
+            $('#registerForm').on('submit', function (e) {
+                if (!this.checkValidity()) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                } else {
+                    // Check if passwords match
+                    var password = $('#registerPassword').val();
+                    var confirmPassword = $('#confirmPassword').val();
+
+                    if (password !== confirmPassword) {
+                        e.preventDefault();
+                        $('#confirmPassword').addClass('is-invalid');
+                    } else {
+                        $('#confirmPassword').removeClass('is-invalid');
+                    }
+                }
+                this.classList.add('was-validated');
+            });
+
+            // Auto-advance slider every 5 seconds
+            setInterval(function () {
+                $('#mainSlider').carousel('next');
+            }, 5000);
+        });
+    </script>
+</body>
+</html>

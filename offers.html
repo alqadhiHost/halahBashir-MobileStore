@@ -1,0 +1,612 @@
+﻿<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عروض خاصة - موبايل ستور</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --accent-color: #e74c3c;
+            --discount-color: #ff4757;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            padding-top: 56px;
+            background-color: #f8f9fa;
+        }
+
+        .navbar {
+            background-color: var(--secondary-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .page-header {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1607082350899-7e105aa886ae?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1770&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 0;
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .offer-card {
+            transition: transform 0.3s;
+            margin-bottom: 25px;
+            border: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+            .offer-card:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+            }
+
+        .offer-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--discount-color);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            z-index: 10;
+        }
+
+        .offer-img {
+            height: 220px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .countdown {
+            background-color: rgba(52, 152, 219, 0.9);
+            color: white;
+            padding: 10px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .countdown-timer {
+            font-size: 1.2rem;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 5px;
+        }
+
+        .countdown-unit {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 5px 10px;
+            border-radius: 5px;
+            min-width: 50px;
+        }
+
+        .original-price {
+            text-decoration: line-through;
+            color: #888;
+            font-size: 0.9rem;
+        }
+
+        .discount-price {
+            color: var(--discount-color);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .saving {
+            color: var(--discount-color);
+            font-weight: bold;
+        }
+
+        .filter-section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+
+        .filter-title {
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 10px;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .filter-group {
+            margin-bottom: 15px;
+        }
+
+            .filter-group label {
+                font-weight: 500;
+            }
+
+        .offer-tag {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+        }
+
+        .btn-offer {
+            background: linear-gradient(135deg, var(--primary-color), #2980b9);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+            .btn-offer:hover {
+                background: linear-gradient(135deg, #2980b9, var(--primary-color));
+                transform: translateY(-2px);
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+
+        .section-title {
+            position: relative;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            text-align: center;
+        }
+
+            .section-title::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+                transform: translateX(-50%);
+                width: 80px;
+                height: 3px;
+                background-color: var(--primary-color);
+            }
+
+        .offer-details {
+            padding: 15px;
+        }
+
+        .pagination {
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .page-link {
+            color: var(--primary-color);
+        }
+
+        .page-item.active .page-link {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .page-header {
+                padding: 60px 0;
+            }
+
+            .offer-img {
+                height: 180px;
+            }
+
+            .countdown-timer {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="index.html">
+                <i class="fa-solid fa-mobile-screen"></i> موبايل ستور
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">الرئيسية</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="products.html">المنتجات</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">من نحن</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">اتصل بنا</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="offers.html">العروض</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <a href="#" class="btn btn-outline-light me-2" data-bs-toggle="modal" data-bs-target="#loginModal">
+                        <i class="fa-solid fa-user"></i> تسجيل الدخول
+                    </a>
+                    <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#registerModal">
+                        <i class="fa-solid fa-user-plus"></i> إنشاء حساب
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="container">
+            <h1 class="display-4 fw-bold">العروض الخاصة</h1>
+            <p class="lead">استفد من أفضل العروض والخصومات على الهواتف والإكسسوارات</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Filters Section -->
+        <div class="row">
+            <div class="col-md-3">
+                <div class="filter-section">
+                    <h5 class="filter-title">تصفية العروض</h5>
+
+                    <div class="filter-group">
+                        <label class="form-label">الفئة</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="filter-phone" checked>
+                            <label class="form-check-label" for="filter-phone">هواتف</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="filter-tablet" checked>
+                            <label class="form-check-label" for="filter-tablet">أجهزة لوحية</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="filter-accessory" checked>
+                            <label class="form-check-label" for="filter-accessory">إكسسوارات</label>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="form-label">نسبة الخصم</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="filter-10">
+                            <label class="form-check-label" for="filter-10">أقل من 10%</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="filter-20" checked>
+                            <label class="form-check-label" for="filter-20">10% - 20%</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="filter-30" checked>
+                            <label class="form-check-label" for="filter-30">أكثر من 20%</label>
+                        </div>
+                    </div>
+
+                    <div class="filter-group">
+                        <label class="form-label">العلامة التجارية</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="filter-apple" checked>
+                            <label class="form-check-label" for="filter-apple">Apple</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="filter-samsung" checked>
+                            <label class="form-check-label" for="filter-samsung">Samsung</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="filter-xiaomi" checked>
+                            <label class="form-check-label" for="filter-xiaomi">Xiaomi</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="filter-huawei" checked>
+                            <label class="form-check-label" for="filter-huawei">Huawei</label>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary w-100">تطبيق الفلتر</button>
+                </div>
+
+                <div class="alert alert-info mt-4">
+                    <h6>نصائح للتسوق</h6>
+                    <p class="small">• العروض سارية لفترة محدودة<br>• الأسعار تشمل الضريبة<br>• توصيل مجاني للطلبات above 500 ر.ي</p>
+                </div>
+            </div>
+
+            <div class="col-md-9">
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <h3 class="section-title">العروض الحالية</h3>
+                    <div class="d-flex">
+                        <select class="form-select me-2" style="width: auto;">
+                            <option selected>ترتيب حسب: الأكثر شهرة</option>
+                            <option>الأعلى خصمًا</option>
+                            <option>الأقل سعرًا</option>
+                            <option>الأعلى سعرًا</option>
+                            <option>الأحدث</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Offer 1 -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card offer-card">
+                            <span class="offer-badge">25% خصم</span>
+                            <span class="offer-tag">عرض لمدة محدودة</span>
+                            <img src="https://images.unsplash.com/photo-1611791484670-ce19b801d192?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=870&q=80" class="offer-img" alt="iPhone 13 Pro">
+                            <div class="countdown">
+                                ينتهي خلال:
+                                <div class="countdown-timer">
+                                    <span class="countdown-unit">02 <small>أيام</small></span>
+                                    <span class="countdown-unit">12 <small>ساعات</small></span>
+                                    <span class="countdown-unit">45 <small>دقائق</small></span>
+                                </div>
+                            </div>
+                            <div class="offer-details">
+                                <h5>iPhone 13 Pro</h5>
+                                <p class="text-muted">أحدث هاتف من Apple بشريحة A15 Bionic</p>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <div>
+                                        <span class="original-price">4,299 ر.ي</span>
+                                        <span class="discount-price d-block">3,224 ر.ي</span>
+                                    </div>
+                                    <span class="saving">وفر 1,075 ر.ي</span>
+                                </div>
+                                <button class="btn btn-offer w-100">أضف إلى السلة</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Offer 2 -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card offer-card">
+                            <span class="offer-badge">15% خصم</span>
+                            <img src="https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1771&q=80" class="offer-img" alt="Samsung Galaxy S22">
+                            <div class="offer-details">
+                                <h5>Samsung Galaxy S22</h5>
+                                <p class="text-muted">هاتف أندرويد قوي بكاميرة رائعة</p>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <div>
+                                        <span class="original-price">3,199 ر.ي</span>
+                                        <span class="discount-price d-block">2,719 ر.ي</span>
+                                    </div>
+                                    <span class="saving">وفر 480 ر.ي</span>
+                                </div>
+                                <button class="btn btn-offer w-100">أضف إلى السلة</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Offer 3 -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card offer-card">
+                            <span class="offer-badge">30% خصم</span>
+                            <span class="offer-tag">الأكثر مبيعًا</span>
+                            <img src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" class="offer-img" alt="Xiaomi 12 Pro">
+                            <div class="countdown">
+                                ينتهي خلال:
+                                <div class="countdown-timer">
+                                    <span class="countdown-unit">01 <small>أيام</small></span>
+                                    <span class="countdown-unit">08 <small>ساعات</small></span>
+                                    <span class="countdown-unit">30 <small>دقائق</small></span>
+                                </div>
+                            </div>
+                            <div class="offer-details">
+                                <h5>Xiaomi 12 Pro</h5>
+                                <p class="text-muted">هاتف ذكي بقدرات تصوير مذهلة</p>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <div>
+                                        <span class="original-price">2,999 ر.ي</span>
+                                        <span class="discount-price d-block">2,099 ر.ي</span>
+                                    </div>
+                                    <span class="saving">وفر 900 ر.ي</span>
+                                </div>
+                                <button class="btn btn-offer w-100">أضف إلى السلة</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Offer 4 -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card offer-card">
+                            <span class="offer-badge">20% خصم</span>
+                            <img src="https://images.unsplash.com/photo-1598327105666-5b89351aff97?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=772&q=80" class="offer-img" alt="AirPods Pro">
+                            <div class="offer-details">
+                                <h5>AirPods Pro</h5>
+                                <p class="text-muted">سماعات لاسلكية بتقنية إلغاء الضوضاء</p>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <div>
+                                        <span class="original-price">999 ر.ي</span>
+                                        <span class="discount-price d-block">799 ر.ي</span>
+                                    </div>
+                                    <span class="saving">وفر 200 ر.ي</span>
+                                </div>
+                                <button class="btn btn-offer w-100">أضف إلى السلة</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Offer 5 -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card offer-card">
+                            <span class="offer-badge">10% خصم</span>
+                            <span class="offer-tag">عرض حصري</span>
+                            <img src="https://images.unsplash.com/photo-1583394838336-acd977736f90?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=768&q=80" class="offer-img" alt="Samsung Watch">
+                            <div class="offer-details">
+                                <h5>Samsung Galaxy Watch</h5>
+                                <p class="text-muted">ساعة ذكية بميزات متطورة لتتبع اللياقة</p>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <div>
+                                        <span class="original-price">1,199 ر.ي</span>
+                                        <span class="discount-price d-block">1,079 ر.ي</span>
+                                    </div>
+                                    <span class="saving">وفر 120 ر.ي</span>
+                                </div>
+                                <button class="btn btn-offer w-100">أضف إلى السلة</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Offer 6 -->
+                    <div class="col-lg-4 col-md-6">
+                        <div class="card offer-card">
+                            <span class="offer-badge">40% خصم</span>
+                            <span class="offer-tag">عرض الموسم</span>
+                            <img src="https://images.unsplash.com/photo-1605236453806-6ff36851218e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=764&q=80" class="offer-img" alt="Power Bank">
+                            <div class="countdown">
+                                ينتهي خلال:
+                                <div class="countdown-timer">
+                                    <span class="countdown-unit">03 <small>أيام</small></span>
+                                    <span class="countdown-unit">06 <small>ساعات</small></span>
+                                    <span class="countdown-unit">15 <small>دقائق</small></span>
+                                </div>
+                            </div>
+                            <div class="offer-details">
+                                <h5>شاحن متنفس 10000mAh</h5>
+                                <p class="text-muted">شاحن محمول سريع بشاحن لاسلكي</p>
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <div>
+                                        <span class="original-price">299 ر.ي</span>
+                                        <span class="discount-price d-block">179 ر.ي</span>
+                                    </div>
+                                    <span class="saving">وفر 120 ر.ي</span>
+                                </div>
+                                <button class="btn btn-offer w-100">أضف إلى السلة</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Pagination -->
+                <nav aria-label="Page navigation">
+                    <ul class="pagination">
+                        <li class="page-item disabled">
+                            <a class="page-link" href="#" tabindex="-1">السابق</a>
+                        </li>
+                        <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                        <li class="page-item">
+                            <a class="page-link" href="#">التالي</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>موبايل ستور</h5>
+                    <p>متجر متخصص في بيع أحدث الهواتف الذكية وملحقاتها بأفضل الأسعار وضمان الجودة.</p>
+                    <div class="mt-3">
+                        <a href="#" class="social-icon"><i class="fab fa-facebook"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h5>روابط سريعة</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="index.html" class="text-white">الرئيسية</a></li>
+                        <li><a href="products.html" class="text-white">المنتجات</a></li>
+                        <li><a href="about.html" class="text-white">من نحن</a></li>
+                        <li><a href="contact.html" class="text-white">اتصل بنا</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5>وسائل الدفع</h5>
+                    <div>
+                        <i class="fa-brands fa-cc-visa fa-2x me-2"></i>
+                        <i class="fa-brands fa-cc-mastercard fa-2x me-2"></i>
+                        <i class="fa-brands fa-cc-paypal fa-2x me-2"></i>
+                        <i class="fa-solid fa-money-bill-wave fa-2x me-2"></i>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5>اشترك في النشرة البريدية</h5>
+                    <form>
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="بريدك الإلكتروني">
+                            <button class="btn btn-primary" type="button">اشترك</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <hr class="mt-0">
+            <div class="text-center py-3">
+                <p class="mb-0">© 2023 موبايل ستور. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap & jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Countdown timer functionality
+        function updateCountdowns() {
+            $('.countdown-timer').each(function() {
+                const days = $(this).find('.countdown-unit:first');
+                const hours = $(this).find('.countdown-unit:nth-child(2)');
+                const minutes = $(this).find('.countdown-unit:last');
+
+                // Simulate countdown - in a real scenario, you would calculate based on actual end date
+                let daysVal = parseInt(days.text());
+                let hoursVal = parseInt(hours.text());
+                let minutesVal = parseInt(minutes.text());
+
+                minutesVal--;
+
+                if (minutesVal < 0) {
+                    minutesVal = 59;
+                    hoursVal--;
+
+                    if (hoursVal < 0) {
+                        hoursVal = 23;
+                        daysVal--;
+
+                        if (daysVal < 0) {
+                            daysVal = 0;
+                            hoursVal = 0;
+                            minutesVal = 0;
+                        }
+                    }
+                }
+
+                days.text(`${daysVal} <small>أيام</small>`);
+                hours.text(`${hoursVal} <small>ساعات</small>`);
+                minutes.text(`${minutesVal} <small>دقائق</small>`);
+            });
+        }
+
+        // Update countdown every minute
+        setInterval(updateCountdowns, 60000);
+
+        // Initialize tooltips
+        $(document).ready(function(){
+            $('[data-bs-toggle="tooltip"]').tooltip();
+        });
+    </script>
+</body>
+</html>

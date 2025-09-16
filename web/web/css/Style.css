@@ -1,0 +1,643 @@
+﻿/* ملف CSS الموحد لجميع صفحات الموقع */
+:root {
+    --primary-color: #4e73df;
+    --secondary-color: #f8f9fc;
+    --success-color: #1cc88a;
+    --danger-color: #e74a3b;
+    --warning-color: #f6c23e;
+    --dark-color: #5a5c69;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Cairo', sans-serif;
+    background-color: #f8f9fc;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* أنماط التنقل */
+.navbar {
+    background-color: var(--primary-color);
+    padding: 0.8rem 0;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.navbar-nav .nav-link {
+    color: rgba(255, 255, 255, 0.8) !important;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s;
+}
+
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: white !important;
+}
+
+/* أنماط الأقسام العامة */
+.hero-section,
+.about-hero,
+.contact-hero {
+    background: linear-gradient(rgba(78, 115, 223, 0.8), rgba(78, 115, 223, 0.8)), url('../images/hero-bg.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 100px 0;
+    text-align: center;
+}
+
+.about-hero {
+    background-image: linear-gradient(rgba(78, 115, 223, 0.8), rgba(78, 115, 223, 0.8)), url('../images/about-bg.jpg');
+}
+
+.contact-hero {
+    background-image: linear-gradient(rgba(78, 115, 223, 0.8), rgba(78, 115, 223, 0.8)), url('../images/contact-bg.jpg');
+}
+
+/* أنماط البطاقات */
+.feature-card,
+.contact-info,
+.social-card,
+.testimonial-card,
+.team-member {
+    background: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    height: 100%;
+}
+
+.feature-card:hover,
+.social-card:hover,
+.team-member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* الشبكات */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    padding: 40px 0;
+}
+
+/* الأقسام */
+.team-section,
+.contact-section,
+.testimonials,
+.social-contact {
+    padding: 60px 0;
+}
+
+.stats-section {
+    background: var(--primary-color);
+    color: white;
+    padding: 60px 0;
+}
+
+/* معلومات الاتصال */
+.contact-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--primary-color);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+}
+
+.contact-icon i {
+    color: white;
+    font-size: 24px;
+}
+
+/* النماذج */
+.contact-form {
+    background: white;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(78, 115, 223, 0.25);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-primary:hover {
+    background-color: #3a59c7;
+    border-color: #3a59c7;
+}
+
+.btn-outline-primary {
+    color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.btn-outline-primary:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* الخرائط */
+.map-container {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* الخط الزمني */
+.timeline {
+    position: relative;
+    padding: 40px 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    width: 2px;
+    height: 100%;
+    background: var(--primary-color);
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    margin-bottom: 40px;
+    position: relative;
+    width: 50%;
+    padding: 0 40px;
+}
+
+.timeline-item:nth-child(odd) {
+    left: 0;
+}
+
+.timeline-item:nth-child(even) {
+    left: 50%;
+}
+
+.timeline-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-item::after {
+    content: '';
+    position: absolute;
+    top: 20px;
+    width: 20px;
+    height: 20px;
+    background: var(--primary-color);
+    border-radius: 50%;
+}
+
+.timeline-item:nth-child(odd)::after {
+    right: -10px;
+}
+
+.timeline-item:nth-child(even)::after {
+    left: -10px;
+}
+
+/* فريق العمل */
+.team-img {
+    height: 250px;
+    overflow: hidden;
+}
+
+.team-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.team-info {
+    padding: 20px;
+}
+
+/* الشركاء والعملاء */
+.testimonial-text {
+    font-style: italic;
+    margin-bottom: 20px;
+}
+
+.client-info {
+    display: flex;
+    align-items: center;
+}
+
+.client-img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-left: 15px;
+}
+
+.client-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* الإحصائيات */
+.stat-item {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+/* السلايدر */
+.slider-container {
+    margin: 40px 0;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.wowslider {
+    width: 100% !important;
+    height: 500px !important;
+}
+
+.ws-title {
+    font-family: 'Cairo', sans-serif !important;
+    background: rgba(78, 115, 223, 0.85) !important;
+    padding: 15px !important;
+    border-radius: 5px;
+}
+
+.ws-images {
+    border-radius: 10px;
+}
+
+/* التذييل */
+footer {
+    background-color: #4e73df;
+    color: white;
+    padding: 40px 0;
+}
+
+.social-icons a {
+    color: white;
+    font-size: 24px;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #f8f9fc;
+}
+
+/* الإشعارات */
+.toast-container {
+    z-index: 1090;
+}
+
+.toast-header {
+    background-color: #d4edda;
+}
+
+.toast-body {
+    background-color: #d4edda;
+}
+
+.toast.error .toast-header {
+    background-color: #f8d7da;
+}
+
+.toast.error .toast-body {
+    background-color: #f8d7da;
+}
+
+/* التحقق من الصحة */
+.is-invalid {
+    border-color: #dc3545;
+}
+
+.invalid-feedback {
+    display: none;
+    color: #dc3545;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+
+.was-validated .form-control:invalid ~ .invalid-feedback {
+    display: block;
+}
+
+/* التجاوب مع الشاشات */
+@media (max-width: 992px) {
+    .hero-section,
+    .about-hero,
+    .contact-hero {
+        padding: 80px 0;
+    }
+    
+    .stat-number {
+        font-size: 2.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero-section,
+    .about-hero,
+    .contact-hero {
+        padding: 60px 0;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .wowslider {
+        height: 300px !important;
+    }
+    
+    .timeline::before {
+        left: 30px;
+    }
+    
+    .timeline-item {
+        width: 100%;
+        padding-right: 0;
+        padding-left: 80px;
+    }
+    
+    .timeline-item:nth-child(even) {
+        left: 0;
+    }
+    
+    .timeline-item::after {
+        left: 20px !important;
+    }
+    
+    .stat-number {
+        font-size: 2rem;
+    }
+    
+    .contact-info, 
+    .social-card {
+        margin-bottom: 30px;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+    
+    .hero-section p.lead {
+        font-size: 1rem;
+    }
+    
+    .wowslider {
+        height: 250px !important;
+    }
+    
+    .stat-number {
+        font-size: 1.8rem;
+    }
+
+}
+
+#wowslider-container { 
+	zoom: 1; 
+	position: relative; 
+	max-width:580px;
+	margin:0 auto;
+	z-index:100;
+	border:none;
+	text-align:left; /* reset align=center */
+}
+* html #wowslider-container{ width:580px }
+#wowslider-container ul{
+	position:relative;
+	width: 10000%; 
+	height:auto;
+	left:0;
+	list-style:none;
+	margin:0;
+	padding:0;
+	border-spacing:0;
+	overflow: visible;
+	/*table-layout:fixed;*/
+}
+#wowslider-container .ws_images ul li{
+	width:1%;
+	line-height:0; /*opera*/
+	float:left;
+	font-size:0;
+	padding:0 0 0 0;
+	margin:0 0 0 0;
+}
+
+#wowslider-container .ws_images{
+	position: relative;
+	left:0;
+	top:0;
+	width:100%;
+	height:100%;
+	overflow:hidden;
+}
+#wowslider-container .ws_images a{
+	width:100%;
+	display:block;
+	color:transparent;
+}
+
+#wowslider-container .ws_images img{
+	width:100%;
+	border:none 0;
+	max-width: none;
+}
+#wowslider-container a{ 
+	text-decoration: none; 
+	outline: none; 
+	border: none; 
+}
+
+#wowslider-container  .ws_bullets { 
+	font-size: 0px; 
+	float: left;
+	position:absolute;
+	z-index:70;
+}
+#wowslider-container  .ws_bullets div{
+	position:relative;
+	float:left;
+}
+#wowslider-container  a.wsl{
+	display:none;
+}
+#wowslider-container  .ws_bullets { 
+	padding: 10px; 
+}
+#wowslider-container .ws_bullets a { 
+	width:15px;
+	height:15px;
+	background: url(./bullet.png) left top;
+	float: left; 
+	text-indent: -4000px; 
+	position:relative;
+	margin-left:3px;
+	color:transparent;
+}
+#wowslider-container .ws_bullets a:hover{
+	background-position: 0 50%;
+}
+#wowslider-container .ws_bullets a.ws_selbull{
+	background-position: 0 100%;
+}
+#wowslider-container a.ws_next, #wowslider-container a.ws_prev {
+	position:absolute;
+	display:none;
+	top:50%;
+	margin-top:-50px;
+	z-index:60;
+	height: 100px;
+	width: 60px;
+	background-image: url(./arrows.png);
+}
+#wowslider-container a.ws_next{
+	background-position: 100% 0;
+	right:0;
+}
+#wowslider-container a.ws_prev {
+	left:0;
+	background-position: 0 0; 
+}
+* html #wowslider-container a.ws_next,* html #wowslider-container a.ws_prev{display:block}
+#wowslider-container:hover a.ws_next, #wowslider-container:hover a.ws_prev {display:block}
+/* bottom center */
+#wowslider-container  .ws_bullets {
+    top: 5px;
+    right: 10px;
+}
+#wowslider-container .ws_bullets .ws_bulframe {
+	top: 20px;
+}
+#wowslider-container .ws_bullets .ws_bulframe {
+	top: 20px;
+}
+#wowslider-container .ws-title{
+	position: absolute;
+	bottom: 10%;
+	left: 7%;
+	z-index: 50;
+	padding:12px;
+	color: #000000;
+	background:#fff;
+    font-family:Oswald,Impact,Charcoal,sans-serif;
+	font-size: 30px;
+	text-shadow: 1px 1px 1px #BBBBBB;
+	line-height: 30px;
+	border-radius:5px;
+	-moz-border-radius:5px;
+	-webkit-border-radius:5px;
+	opacity:0.5;
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50);	
+}
+#wowslider-container .ws-title div{
+	font-size: 25px;
+	text-shadow: 1px 1px 1px #000000;
+}#wowslider-container ul{
+	animation: wsBasic 12s infinite;
+	-moz-animation: wsBasic 12s infinite;
+	-webkit-animation: wsBasic 12s infinite;
+}
+@keyframes wsBasic{0%{left:-0%} 16.67%{left:-0%} 33.33%{left:-100%} 50%{left:-100%} 66.67%{left:-200%} 83.33%{left:-200%} }
+@-moz-keyframes wsBasic{0%{left:-0%} 16.67%{left:-0%} 33.33%{left:-100%} 50%{left:-100%} 66.67%{left:-200%} 83.33%{left:-200%} }
+@-webkit-keyframes wsBasic{0%{left:-0%} 16.67%{left:-0%} 33.33%{left:-100%} 50%{left:-100%} 66.67%{left:-200%} 83.33%{left:-200%} }
+
+#wowslider-container .ws_shadow{
+	background: url(./shadow.png) left 100%;
+	background-repeat: no-repeat;
+	background-size:100%;
+	width:100%;
+	height:20%;
+	position: absolute;
+	left:0;
+	bottom:-20%;
+	z-index:-1;
+}
+* html #wowslider-container .ws_shadow{/*ie6*/
+	background:none;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader( src='wowslider/install/shadow.png', sizingMethod='scale');
+}
+*+html #wowslider-container .ws_shadow{/*ie7*/
+	background:none;
+	filter:progid:DXImageTransform.Microsoft.AlphaImageLoader( src='wowslider/install/shadow.png', sizingMethod='scale');
+}
+#wowslider-container .ws_bullets  a img{
+	text-indent:0;
+	display:block;
+	top:15px;
+	left:-123px;
+	visibility:hidden;
+	position:absolute;
+    -moz-box-shadow: 0 0 5px #999999;
+    box-shadow: 0 0 5px #999999;
+    border: 5px solid #FFFFFF;
+	max-width:none;
+}
+#wowslider-container .ws_bullets a:hover img{
+	visibility:visible;
+}
+
+#wowslider-container .ws_bulframe div div{
+	height:90px;
+	overflow:visible;
+	position:relative;
+}
+#wowslider-container .ws_bulframe div {
+	left:0;
+	overflow:hidden;
+	position:relative;
+	width:246px;
+	background-color:#FFFFFF;
+}
+#wowslider-container  .ws_bullets .ws_bulframe{
+	display:none;
+	overflow:visible;
+	position:absolute;
+	cursor:pointer;
+    -moz-box-shadow: 0 0 5px #999999;
+    box-shadow: 0 0 5px #999999;
+    border: 5px solid #FFFFFF;
+}
+#wowslider-container .ws_bulframe span{
+	display:block;
+	position:absolute;
+	top:-11px;
+	margin-left:-5px;
+	left:123px;
+	background:url(./triangle.png);
+	width:15px;
+	height:6px;
+}
