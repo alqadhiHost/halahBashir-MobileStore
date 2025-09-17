@@ -210,6 +210,55 @@
                 font-size: 1rem;
             }
         }
+        .custom-toast {
+    border-radius: 10px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    margin-bottom: 15px;
+    border: none;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    max-width: 350px;
+}
+
+.toast-header {
+    background: #3498db; /* Primary color */
+    color: white;
+    padding: 12px 15px;
+    border-bottom: none;
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.toast-header .btn-close {
+    margin: 0;
+    margin-right: auto;
+    margin-left: 0;
+    filter: invert(1);
+    opacity: 0.8;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    background-size: 20px;
+}
+
+.toast-header .btn-close:hover {
+    opacity: 1;
+}
+
+.toast-title {
+    font-weight: 600;
+    font-size: 16px;
+    margin: 0 auto;
+    padding-right: 20px;
+}
+
+.toast-body {
+    padding: 15px;
+    color: #2c3e50; /* Secondary color */
+    line-height: 1.6;
+}
     </style>
 </head>
 <body>
@@ -611,4 +660,5 @@
 </body>
 
 </html>
+
 
